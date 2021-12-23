@@ -23,7 +23,7 @@ public class gestLang implements igestLang{
 	@Override
 	public Languages getLangById(int id) {
 		// TODO Auto-generated method stub
-		return lr.getById(id);
+		return lr.findById(id).get();
 	}
 
 	@Override

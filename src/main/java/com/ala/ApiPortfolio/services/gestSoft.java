@@ -23,7 +23,7 @@ public class gestSoft implements igestSoft{
 	@Override
 	public software getSoftById(int id) {
 		// TODO Auto-generated method stub
-		return sr.getById(id);
+		return sr.findById(id).get();
 	}
 
 	@Override

@@ -28,7 +28,7 @@ public class gestProject implements igestProject{
 	@Override
 	public Projecte getProjectById(int id) {
 		// TODO Auto-generated method stub
-		return pr.getById(id);
+		return pr.findById(id).get();
 	}
 
 	@Override
