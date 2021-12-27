@@ -63,6 +63,12 @@ public class Restcontroller {
 	
 	@DeleteMapping("/lang/{id}")
 	public void deleteLang(@PathVariable int id) {
+		
+		List<Projecte> lp = getProjectsbylang(id);
+		for (Projecte projecte : lp) {
+			projecte.setLang(null);
+			gp.saveProject(projecte);
+		}
 		gl.deleteLang(id);
 	}
 	
@@ -90,6 +96,12 @@ public class Restcontroller {
 	
 	@DeleteMapping("/Soft/{id}")
 	public void deleteSoft(@PathVariable int id) {
+		List<Projecte> lp = getProjectsbysoft(id);
+		for (Projecte projecte : lp) {
+			projecte.setSoft(null);
+			gp.saveProject(projecte);
+		}
+		
 		gs.deleteSoft(id);
 	}
 	
@@ -104,6 +116,18 @@ public class Restcontroller {
 	public Projecte getProject(@PathVariable int id){
 		return gp.getProjectById(id);
 	}
+	
+	@GetMapping("/projectbysoft/{id}")
+	public List<Projecte> getProjectsbysoft(@PathVariable int id){
+		software s = gs.getSoftById(id);
+		return gp.getProjectsBysoft(s);
+	} 
+	
+	@GetMapping("/projectbylang/{id}")
+	public List<Projecte> getProjectsbylang(@PathVariable int id){
+		Languages l = gl.getLangById(id);
+		return gp.getProjectsBylang(l);
+	} 
 	
 	@GetMapping(value="/Project/img/{id}",produces = MediaType.IMAGE_PNG_VALUE)
 	public byte[] getImage(@PathVariable int id) throws IOException{
